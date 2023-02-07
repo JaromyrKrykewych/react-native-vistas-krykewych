@@ -3,10 +3,11 @@ import { THEME } from "../../constants/theme";
 
 export const styles = StyleSheet.create({
   container: {
+    paddingTop: 35,
     flex: 1,
     backgroundColor: THEME.colors.background,
-    justifyContent: 'center',
-    alignItems: 'center',
+    /* justifyContent: 'center',
+    alignItems: 'center', */
   },
   title: {
     fontFamily: 'PlayfairDisplayBold',

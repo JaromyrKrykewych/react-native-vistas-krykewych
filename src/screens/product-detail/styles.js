@@ -13,4 +13,9 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     color: THEME.colors.title,
   },
+  price: {
+    fontFamily: 'PlayfairDisplayRegular',
+    fontSize: 20,
+    marginTop: 20,
+  }
 })

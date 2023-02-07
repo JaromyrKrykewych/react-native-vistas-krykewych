@@ -4,23 +4,14 @@ import { THEME } from "../../constants/theme";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 35,
     backgroundColor: THEME.colors.background,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  title: {
-    fontFamily: 'PlayfairDisplayBold',
-    fontSize: 24,
-    color: THEME.colors.title,
-  },
-  button: {
-    marginTop: 25,
-    paddingBottom: 2,
-    borderBottomWidth: 1,
-    borderBottomColor: THEME.colors.dark,
-  },
-  buttonText: {
+  message: {
+    marginTop: 35,
+    marginHorizontal: '10%',
     fontFamily: 'PlayfairDisplayRegular',
-    fontSize: 14,
+    fontSize: 18,
+    textAlign: 'center',
   }
 })

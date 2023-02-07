@@ -20,14 +20,14 @@ const ShopNavigator = () => {
       }
     }}>
       <Stack.Screen name="Categories" component={Categories} options={{
-        headerShown: false,
+        title: 'Categories'
       }} />
-      <Stack.Screen name="Products" component={Products} options={{
-        title: 'Products',
-      }} />
-      <Stack.Screen name="ProductDetail" component={ProductDetail} options={{
-        title: 'Product Detail'
-      }} />
+      <Stack.Screen name="Products" component={Products} options={({route}) => ({
+        title: route.params.name,
+      })} />
+      <Stack.Screen name="ProductDetail" component={ProductDetail} options={({route}) => ({
+        title: route.params.title.split(' ')[0],
+      })} />
     </Stack.Navigator>
   )
 }
