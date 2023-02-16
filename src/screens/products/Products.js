@@ -1,20 +1,19 @@
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import { filterProducts, selectProduct } from '../../store/actions/index'
+import { useDispatch, useSelector } from "react-redux";
 
-import { PRODUCTS } from "../../constants/data/products";
 import { ProductItem } from "../../components";
-import React from "react";
 import { styles } from "./styles";
 
-const Products = ({ navigation, route }) => {
-  const { categoryId, name } = route.params;
-
-  const filtering = PRODUCTS.filter(
-    (product) => product.categoryId === categoryId
-  );
+const Products = ({ navigation }) => {
+  const dispatch = useDispatch()
+  const category = useSelector((state) => state.category.selected)
+  const filteredProducts = useSelector((state) => state.products.filteredProducts)
 
   const onSelected = (item) => {
-    return navigation.navigate("ProductDetail", {
-      productId: item.id,
+    dispatch(selectProduct(item.id))
+    navigation.navigate("ProductDetail", {
       title: item.title,
     });
   };
@@ -27,13 +26,17 @@ const Products = ({ navigation, route }) => {
       There's no products available for this category
     </Text>
   );
+
+  useEffect(() => {
+    dispatch(filterProducts(category.id))
+  }, [])
   return (
     <View style={styles.container}>
-      {filtering.length === 0 ? (
+      {filteredProducts.length === 0 ? (
         <Message />
       ) : (
         <FlatList
-          data={filtering}
+          data={filteredProducts}
           renderItem={renderItem}
           keyExtractor={keyExtractor}
           style={styles.list}

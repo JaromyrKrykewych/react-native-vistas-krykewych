@@ -1,11 +1,12 @@
-import { FlatList, Text, View } from "react-native";
+import { FlatList, View } from "react-native";
 
-import { ORDERS } from "../../constants/data";
 import { OrderItem } from "../../components";
 import React from "react";
 import { styles } from "./styles";
+import { useSelector } from "react-redux";
 
 const Orders = () => {
+  const orders = useSelector((state) => state.orders.orders)
   const onDelete = (id) => {};
 
   const renderItem = ({ item }) => (
@@ -15,7 +16,7 @@ const Orders = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={ORDERS}
+        data={orders}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
       />

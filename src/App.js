@@ -1,7 +1,9 @@
 import { ActivityIndicator, View } from "react-native";
 
 import AppNavigator from "./navigation";
+import { Provider } from "react-redux";
 import { THEME } from "./constants/theme";
+import store from "./store";
 import { styles } from "./styles";
 import { useFonts } from "expo-font";
 
@@ -10,13 +12,18 @@ const App = () => {
     PlayfairDisplayRegular: require("../assets/fonts/PlayfairDisplay-Regular.ttf"),
     PlayfairDisplayBold: require("../assets/fonts/PlayfairDisplay-Bold.ttf"),
   });
-  if (!loaded) return (
-    <View style={styles.container}>
-      <ActivityIndicator size={'large'} color={THEME.colors.primary}/>
-    </View>
-  );
+  if (!loaded)
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size={"large"} color={THEME.colors.primary} />
+      </View>
+    );
 
-  return <AppNavigator />;
+  return (
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>
+  );
 };
 
 export default App;
